@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelApp - Modern Transportation Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/minimal.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --navy: #12355b;
+            --blue: #1d568d;
+            --light-blue: #e8f1fb;
+            --white: #ffffff;
+            --text: #263445;
+            --muted: #64748b;
+            --navy-light: #1b4979;
+            --orange: #d97706;
+            --green: #238636;
+            --red: #c0392b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-blue);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--navy);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #75d69c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dce8f5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #75d69c;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy), #0f2a47);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-cols: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, #75d69c, #58a6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons .btn {
+            margin-right: 1rem;
+        }
+
+        .hero-buttons .btn-primary {
+            background: #75d69c;
+            color: var(--navy);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .hero-buttons .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-buttons .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--white);
+            border-radius: 25px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .hero-buttons .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #75d69c;
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--navy);
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #75d69c;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--white);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .service-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--navy), #0f2a47);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .btn-primary {
+            background: #75d69c;
+            color: var(--navy);
+            padding: 0.8rem 2.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--muted);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #75d69c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334a6f;
+            padding-top: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Auth Pages */
+        .auth-page {
+            min-height: 100vh;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .auth-card p {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-auth {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .btn-auth:hover {
+            background: #1b4979;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .divider span {
+            background: var(--light-blue);
+            padding: 0 1rem;
+        }
+
+        /* Dashboard Cards */
+        .dashboard {
+            padding: 5rem 2rem;
+        }
+
+        .dashboard-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-card .number {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                order: -1;
+                margin-top: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa fa-car"></i> TRAVEL
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <button class="btn-login"><i class="fa fa-user"></i> Login</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your Journey,<br><span>Our Priority</span></h1>
+                <p>Book reliable rides, track your trips, and connect with verified drivers. Experience safe and convenient transportation at your fingertips.</p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn-primary">Get Started</a>
+                    <a href="#" class="btn-secondary">Watch Demo</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1557406371-146d07e563f8?w=500&q=80" alt="Travel App">
+                <span class="badge">Available Now</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2><i class="fa fa-star"></i> Key Features</h2>
+            <p>Everything you need to manage your travel and bookings</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-road"></i></div>
+                <h3>Easy Ride Booking</h3>
+                <p>Book passenger or goods rides in just a few clicks with our intuitive interface.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-users"></i></div>
+                <h3>User Management</h3>
+                <p>Manage customers and drivers with comprehensive admin controls.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-notice"></i></div>
+                <h3>Real-time Notifications</h3>
+                <p>Stay updated with booking status, driver arrivals, and important alerts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa fa-dollar-sign"></i></div>
+                <h3>Fare Calculation</h3>
+                <p>Accurate fare estimation based on distance, vehicle type, and load size.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1,200+</div>
+                <div class="stat-label">Completed Trips</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label"> satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2><i class="fa fa-briefcase"></i> Our Services</h2>
+            <p>Comprehensive transportation solutions for everyone</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Customer Booking</h3>
+                <ul>
+                    <li>Book passenger rides</li>
+                    <li>Book goods delivery</li>
+                    <li>Select pickup parks</li>
+                    <li>Real-time fare estimation</li>
+                    <li>Track booking status</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Driver Platform</h3>
+                <ul>
+                    <li>Accept ride requests</li>
+                    <li>Update trip status</li>
+                    <li>Set arrival times</li>
+                    <li>Track earnings</li>
+                    <li>Manage availability</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Admin Panel</h3>
+                <ul>
+                    <li>User management</li>
+                    <li>Booking oversight</li>
+                    <li>Driver monitoring</li>
+                    <li>System statistics</li>
+                    <li>Notification management</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to Start Your Journey?</h2>
+        <p>Join thousands of satisfied customers and drivers who trust TravelApp for their transportation needs.</p>
+        <a href="#" class="btn-primary">Create Account Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>TRAVEL</h3>
+                    <p>Your journey, our priority. Safe, simple, and reliable transportation solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TravelApp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Pages -->
+    <div class="auth-page" id="login-page">
+        <div class="auth-card">
+            <h2>Welcome Back</h2>
+            <p>Sign in to continue your journey</p>
+            <form>
+                <div class="form-group">
+                    <label>Username or Email</label>
+                    <input type="text" placeholder="Enter your username or email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn-auth">Login</button>
+            </form>
+            <div class="divider">
+                <span>or</span>
+            </div>
+            <p>Don't have an account? <a href="#" style="color: var(--blue);">Create an Account</a></p>
+        </div>
+    </div>
+
+    <div class="auth-page" id="register-page" style="display: none;">
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <p>Sign up to book your first ride</p>
+            <form>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Choose a username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a password">
+                </div>
+                <button type="submit" class="btn-auth">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" style="color: var(--blue);">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        const menuBtn = document.createElement('button');
+        menuBtn.className = 'mobile-menu-btn';
+        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+        menuBtn.style.display = 'none';
+        menuBtn.style.color: var(--white);
+        menuBtn.style.fontSize = '1.5rem';
+        
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.parentNode.insertBefore(menuBtn, navLinks);
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle between login and register
+        const loginLink = document.querySelector('.nav-links a:first-child');
+        if (loginLink) {
+            loginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('login-page').style.display = 'block';
+                document.getElementById('register-page').style.display = 'none';
+            });
+        }
+
+        // Close auth pages on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('auth-page')) {
+                e.target.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
