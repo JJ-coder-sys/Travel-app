@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelApp - About Us</title>
+    <title>TRAVEL - About Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/minimal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <style>
         :root {
-            --navy: #12355b;
-            --blue: #1d568d;
-            --light-blue: #e8f1fb;
+            --primary: #e83e8c;
+            --primary-dark: #d81a6e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --muted: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
             --white: #ffffff;
-            --text: #263445;
-            --muted: #64748b;
         }
 
         * {
@@ -24,17 +26,19 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--light-blue);
-            color: var(--text);
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
 
         nav {
-            background: var(--navy);
+            background: var(--white);
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -46,7 +50,7 @@
         }
 
         .logo {
-            color: var(--white);
+            color: var(--primary);
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 1px;
@@ -57,68 +61,64 @@
         }
 
         .logo i {
-            color: #75d69c;
+            color: #e83e8c;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--dce8f5);
+            color: var(--dark);
             text-decoration: none;
             font-size: 0.9rem;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #75d69c;
+            color: var(--primary);
         }
 
-        .btn {
-            padding: 0.6rem 1.2rem;
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--muted);
+            color: var(--muted);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .btn-primary {
-            background: #75d69c;
-            color: var(--navy);
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: #58a6ff;
+        .lang-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--navy), #0f2a47);
-            display: flex;
-            align-items: center;
-            padding: 0 2rem 2rem;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--white);
+            padding: 6rem 2rem 4rem;
+            margin-top: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .hero-text p {
-            color: var(--muted);
+        .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section {
@@ -129,12 +129,12 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .section-header h2 {
             font-size: 2.5rem;
-            color: var(--navy);
+            color: var(--primary);
             margin-bottom: 1rem;
         }
 
@@ -157,7 +157,7 @@
         }
 
         .about-text h3 {
-            color: var(--navy);
+            color: var(--primary);
             margin-bottom: 1rem;
         }
 
@@ -182,7 +182,7 @@
             font-family: 'Font Awesome 6 Free';
             position: absolute;
             left: 0;
-            color: #75d69c;
+            color: var(--primary);
         }
 
         .values-grid {
@@ -197,13 +197,13 @@
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .value-card .number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #75d69c;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
@@ -215,29 +215,29 @@
         .testimonial {
             background: var(--white);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-top: 2rem;
         }
 
         .testimonial p {
-            color: var(--text);
+            color: var(--dark);
             font-style: italic;
             margin-bottom: 1rem;
         }
 
         .testimonial h4 {
-            color: var(--navy);
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .testimonial span {
-            color: #75d69c;
+            color: var(--muted);
         }
 
         .footer {
-            background: var(--navy);
+            background: var(--dark);
             color: var(--muted);
-            padding: 3rem 2rem 1rem;
+            padding: 4rem 2rem 2rem;
         }
 
         .footer-container {
@@ -281,12 +281,12 @@
         }
 
         .footer-links a:hover {
-            color: #75d69c;
+            color: var(--primary);
         }
 
         .footer-bottom {
-            border-top: 1px solid #334a6f;
-            padding-top: 1rem;
+            border-top: 1px solid var(--333);
+            padding-top: 2rem;
             text-align: center;
             margin-top: 2rem;
         }
@@ -313,29 +313,26 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="lang-btn">EN</button>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>About TravelApp</h1>
-                <p>Leading transportation booking platform connecting customers with verified drivers worldwide.</p>
-            </div>
+        <div class="hero">
+            <h1>About TRAVEL</h1>
+            <p>Fair rides, fair price. Safe, simple, and reliable transportation solutions connecting communities.</p>
         </div>
     </section>
 
     <section class="section" id="mission">
         <div class="section-header">
-            <h2><i class="fa fa-object-group"></i> Our Mission</h2>
-            <p>To revolutionize the transportation industry by providing safe, reliable, and convenient booking solutions for everyone.</p>
+            <h2>Our Mission</h2>
         </div>
         <div class="about-content">
             <div class="about-grid">
                 <div class="about-text">
                     <h3>Our Story</h3>
-                    <p>TravelApp was founded in 2024 with a simple mission: to make transportation accessible and reliable for all. What started as a local transportation solution has grown into a platform serving thousands of users across multiple regions.</p>
-                    <p>Our team combines technology expertise with deep understanding of the transportation industry to create seamless booking experiences.</p>
+                    <p>TRAVEL was founded with a simple mission: to make transportation accessible and reliable for all. What started as a local solution has grown into a platform serving thousands of users, combining technology expertise with deep understanding of the transportation industry to create seamless booking experiences.</p>
                     <ul>
                         <li>24/7 customer support</li>
                         <li>Verified driver network</li>
@@ -363,11 +360,11 @@
 
     <section class="section">
         <div class="section-header">
-            <h2><i class="fa fa-quote-left"></i> What Users Say</h2>
+            <h2>What Users Say</h2>
         </div>
         <div class="about-content">
             <div class="testimonial">
-                <p>"TravelApp has transformed the way I book rides. Easy, reliable, and the fare estimation is spot on!"</p>
+                <p>"TRAVEL has transformed the way I book rides. Easy, reliable, and the fare negotiation is fair!"</p>
                 <h4>John D.</h4>
                 <span>Customer</span>
             </div>
@@ -384,7 +381,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>TRAVEL</h3>
-                    <p>Your journey, our priority. Safe, simple, and reliable transportation solutions.</p>
+                    <p>Fair rides, fair price. Safe, simple, and reliable transportation solutions.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Company</h4>
@@ -412,10 +409,10 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 TravelApp. All rights reserved.</p>
+                <p>&copy; 2026 TRAVEL. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </section>
 
     <section id="contact" class="section">
         <div class="section-header">
@@ -425,7 +422,7 @@
             <div class="about-text">
                 <h3>Get In Touch</h3>
                 <p>Have questions or need support? We'd love to hear from you.</p>
-                <p>Email: support@travelapp.com</p>
+                <p>Email: support@travel.com</p>
                 <p>Phone: +1 (234) 567-890</p>
                 <p>Address: 123 Transportation Ave, City, Country</p>
             </div>
